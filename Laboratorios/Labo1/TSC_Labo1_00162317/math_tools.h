@@ -1,15 +1,18 @@
 //
 // Created by Roberto Hernandez on 20/3/2020.
 //
+#ifndef TSC_LABO1_00162317_MATH_TOOLS_H
+#define TSC_LABO1_00162317_MATH_TOOLS_H
+
+#endif //TSC_LABO1_00162317_MATH_TOOLS_H
+
 #include <vector>
 #include "math.h"
 #include "stdlib.h"
-
 using namespace std;
 
 typedef vector<float> Vector;
 typedef vector<Vector> Matrix;
-
 
 void zeroes(Vector &v,int n){
     for(int i=0;i<n;i++){
@@ -23,13 +26,6 @@ void zeroes(Matrix &M,int n){
         M.push_back(row);
     }
 }
-
-void copyVector(Vector v, Vector &copy){
-    zeroes(copy,v.size());
-    for(int i=0;i<v.size();i++)
-        copy.at(i) = v.at(i);
-}
-
 void copyMatrix(Matrix A, Matrix &copy){
     zeroes(copy,A.size());
     for(int i=0;i<A.size();i++)
@@ -60,7 +56,7 @@ float calculateMember(int i,int j,int r,Matrix A,Matrix B){
         member += A.at(i).at(k)*B.at(k).at(j);
     return member;
 }
-
+/*
 Matrix productMatrixMatrix(Matrix A,Matrix B,int n,int r,int m){
     Matrix R;
 
@@ -71,7 +67,7 @@ Matrix productMatrixMatrix(Matrix A,Matrix B,int n,int r,int m){
 
     return R;
 }
-
+*/
 void getMinor(Matrix &M,int i, int j){
     M.erase(M.begin()+i);
     for(int i=0;i<M.size();i++)
@@ -91,28 +87,6 @@ float determinant(Matrix M){
         return det;
     }
 }
-
-Vector sumVector(Vector A,Vector B,int n){
-    Vector R;
-
-    zeroes(R,n);
-    for(int i=0;i<n;i++)
-        R.at(i) = A.at(i)+B.at(i);
-
-    return R;
-}
-
-Matrix sumMatrix(Matrix A,Matrix B,int n,int m){
-    Matrix R;
-
-    zeroes(R,n,m);
-    for(int i=0;i<n;i++)
-        for(int j=0;j<m;j++)
-            R.at(i).at(j) = A.at(i).at(j)+B.at(i).at(j);
-
-    return R;
-}
-
 void cofactors(Matrix M, Matrix &Cof){
     zeroes(Cof,M.size());
     for(int i=0;i<M.size();i++){
@@ -132,5 +106,20 @@ void transpose(Matrix M, Matrix &T){
             T.at(j).at(i) = M.at(i).at(j);
 }
 
+Matrix MatrixInversa(Matrix auxiliar, Matrix reversa){
+    zeroes(reversa, auxiliar.size());
+    Matrix matrixA, matrixB, matrixC;
 
+    cofactors(auxiliar, matrixA);
 
+    transpose(matrixA, matrixB);
+
+    productRealMatrix((1/determinant(auxiliar)), matrixB, matrixC);
+
+    for (int i = 0; i < auxiliar.size(); ++i) {
+        for (int j = 0; j < auxiliar.at(0).size() ; ++j) {
+            reversa.at(i).at(j) = matrixC.at(i).at(j);
+        }
+    }
+    return reversa;
+}
