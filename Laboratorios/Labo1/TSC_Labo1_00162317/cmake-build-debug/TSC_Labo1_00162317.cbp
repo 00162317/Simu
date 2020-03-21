@@ -80,7 +80,13 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/Roberto Hernandez/IdeaProjects/Simu/Laboratorios/Labo1/TSC_Labo1_00162317/display_tools.h">
+			<Option target="TSC_Labo1_00162317"/>
+		</Unit>
 		<Unit filename="C:/Users/Roberto Hernandez/IdeaProjects/Simu/Laboratorios/Labo1/TSC_Labo1_00162317/main.cpp">
+			<Option target="TSC_Labo1_00162317"/>
+		</Unit>
+		<Unit filename="C:/Users/Roberto Hernandez/IdeaProjects/Simu/Laboratorios/Labo1/TSC_Labo1_00162317/math_tools.h">
 			<Option target="TSC_Labo1_00162317"/>
 		</Unit>
 		<Unit filename="C:/Users/Roberto Hernandez/IdeaProjects/Simu/Laboratorios/Labo1/TSC_Labo1_00162317/CMakeLists.txt">
