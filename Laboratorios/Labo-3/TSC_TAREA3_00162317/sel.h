@@ -2,11 +2,11 @@ Matrix createLocalK(int element,mesh &m){
     Matrix K;
     Vector row1, row2;
 
-    float k = m.getParameter(THERMAL_CONDUCTIVITY),
-    l = m.getNode(element+1).getX() - m.getNode(element).getX();
+    float var = m.getParameter(THERMAL_CONDUCTIVITY),
+            l = (m.getNode(element+1).getX() - m.getNode(element).getX());
 
-    row1.push_back(k/l); row1.push_back(-k/l);
-    row2.push_back(-k/l); row2.push_back(k/l);
+    row1.push_back(0.5*(var)/l); row1.push_back(-0.5*(var)/l);
+    row2.push_back(-0.5*(var)/l); row2.push_back(0.5*(var)/l);
 
     K.push_back(row1); K.push_back(row2);
 
@@ -15,11 +15,11 @@ Matrix createLocalK(int element,mesh &m){
 
 Vector createLocalb(int element,mesh &m){
     Vector b;
-    float Q = m.getParameter(HEAT_SOURCE),
-    l = m.getNode(element+1).getX() - m.getNode(element).getX();
+    float var = m.getParameter(HEAT_SOURCE),
+            l = m.getNode(element+1).getX() - m.getNode(element).getX();
 
-    b.push_back(Q*l/2);
-    b.push_back(Q*l/2);
+    b.push_back(((-1)*var*l)/2);
+    b.push_back(((-1)*var*l)/2);
 
     return b;
 }
@@ -32,8 +32,8 @@ void crearSistemasLocales(mesh &m,vector<Matrix> &localKs,vector<Vector> &localb
 }
 
 void assemblyK(element e,Matrix localK,Matrix &K){
-    int index1 = e.getNode1() - 1;
-    int index2 = e.getNode2() - 1;
+    int index1 = e.getNode1() - 1; //0 - 1
+    int index2 = e.getNode2() - 1; //1 - 2
 
     K.at(index1).at(index1) += localK.at(0).at(0);
     K.at(index1).at(index2) += localK.at(0).at(1);
