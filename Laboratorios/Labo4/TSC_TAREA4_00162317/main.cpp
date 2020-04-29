@@ -14,7 +14,7 @@ int main()
     Vector b;
     Vector T;
 
-    
+
     cout << "IMPLEMENTACI"<<char(224)<<"N DEL M"<<char(144)<<"TODO DE LOS ELEMENTOS FINITOS\n"
          << "\t- ECUACIONES DE NAVIER-STOKES\n" << "\t- 1 DIMENSI"<<char(224)<<"N\n"
          << "\t- FUNCIONES DE FORMA LINEALES\n" << "\t- PESOS DE GALERKIN\n"
@@ -24,24 +24,21 @@ int main()
     leerMallayCondiciones(m);
 
     crearSistemasLocales(m,localKs,localbs);
-    
+
     zeroes(K,m.getSize(NODES)*2);
     zeroes(b,m.getSize(NODES)*2);
     ensamblaje(m,localKs,localbs,K,b);
-    
+
 
     //Solo se aplica Dirichlet, no habra condiciones de Neumann
     applyDirichlet(m,K,b);
-    
+
+    //Cambio aqui
+    //calculate(K,b,T);
     showMatrix(K);
 
+
     zeroes(T,b.size());
-
-    calculate(K,b,T);
-
-    cout << "La respuesta es: " << endl;
-    
-    showVector(T);
 
     return 0;
 }

@@ -1,6 +1,6 @@
 #include <fstream>
 #include "string.h"
-    
+
 void obtenerDatos(istream &file,int nlines,int n,int mode,item* item_list){
     string line;
     file >> line;
@@ -8,16 +8,16 @@ void obtenerDatos(istream &file,int nlines,int n,int mode,item* item_list){
 
     for(int i=0;i<n;i++){
         switch(mode){
-        case INT_FLOAT:
-            int e; float r;
-            file >> e >> r;
-            item_list[i].setIntFloat(e,r);
-            break;
-        case INT_INT_INT:
-            int e1,e2,e3;
-            file >> e1 >> e2 >> e3;
-            item_list[i].setIntIntInt(e1,e2,e3);
-            break;
+            case INT_FLOAT:
+                int e; float r;
+                file >> e >> r;
+                item_list[i].setIntFloat(e,r);
+                break;
+            case INT_INT_INT:
+                int e1,e2,e3;
+                file >> e1 >> e2 >> e3;
+                item_list[i].setIntIntInt(e1,e2,e3);
+                break;
         }
     }
 }
@@ -50,10 +50,10 @@ void correctConditions(int n,condition *list){
 void leerMallayCondiciones(mesh &m){
     char filename[14];
     ifstream file;
-    float l,u_bar,nu,rho,f;
+    float l, tau, kapa, lambda, ipsilon, psi, alfa, delta, eta;
     int nnodes,neltos,ndirich_u,ndirich_p;
 
-    
+
     condition *dirichlet_u_list;
     condition *dirichlet_p_list;
 
@@ -63,16 +63,16 @@ void leerMallayCondiciones(mesh &m){
         file.open(filename);
     }while(!file);
 
-    
-    file >> l >> u_bar >> nu >> rho >> f;
+
+    file >> l >> tau >> kapa >> lambda >> ipsilon >> psi >> alfa >> delta >> eta;
     file >> nnodes >> neltos >> ndirich_u >> ndirich_p;
 
-    
-    m.setParameters(l,u_bar,nu,rho,f);
+
+    m.setParameters(l, tau, kapa, lambda, ipsilon, psi, alfa, delta, eta);
     m.setSizes(nnodes,neltos,ndirich_u+ndirich_p);
     m.createData();
 
-    
+
     dirichlet_u_list = new condition[ndirich_u];
     dirichlet_p_list = new condition[ndirich_p];
 
