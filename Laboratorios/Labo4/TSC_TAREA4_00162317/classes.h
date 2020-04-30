@@ -1,6 +1,6 @@
 enum lines {NOLINE,SINGLELINE,DOUBLELINE};
 enum modes {NOMODE,INT_FLOAT,INT_INT_INT};
-enum parameters {L, TAU, KAPA, LAMBDA, IPSILON, PSI, ALFA, DELTA, ETA};
+enum parameters {var1,var2Tau, var3K, lambdaVar, varV, varPSI, varAlfa, varDelta, varEta};
 enum sizes {NODES,ELEMENTS,DIRICHLET};
 
 class item{
@@ -104,16 +104,16 @@ class mesh{
     element *element_list;
     condition *dirichlet_list;
 public:
-    void setParameters(float l, float a,float b,float c,float d,float e, float f, float g, float h){
-        parameters[L]=l;
-        parameters[TAU]=a;
-        parameters[KAPA]=b;
-        parameters[LAMBDA]=c;
-        parameters[IPSILON]=d;
-        parameters[PSI]=e;
-        parameters[ALFA]=f;
-        parameters[DELTA]=g;
-        parameters[ETA]=h;
+    void setParameters(float l, float tau,float k, float lambda,float v,float psi,float alpha,float delta,float eta){
+        parameters[var1]=l;
+        parameters[var2Tau]=tau;
+        parameters[var3K]=k;
+        parameters[lambdaVar]=lambda;
+        parameters[varV]=v;
+        parameters[varPSI]=psi;
+        parameters[varAlfa]=alpha;
+        parameters[varDelta]=delta;
+        parameters[varEta]=eta;
     }
     void setSizes(int nnodes,int neltos,int ndirich){
         sizes[NODES] = nnodes;
