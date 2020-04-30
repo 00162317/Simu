@@ -30,15 +30,18 @@ int main()
     ensamblaje(m,localKs,localbs,K,b);
 
 
-    //Solo se aplica Dirichlet, no habra condiciones de Neumann
+
     applyDirichlet(m,K,b);
 
-    //Cambio aqui
-    //calculate(K,b,T);
     showMatrix(K);
 
 
-    zeroes(T,b.size());
+
+    //zeroes(T,b.size());
+    //calculate(K,b,T);
+    //cout << "La respuesta es: " << endl;
+
+    //showVector(T);
 
     return 0;
 }

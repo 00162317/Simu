@@ -50,7 +50,7 @@ void correctConditions(int n,condition *list){
 void leerMallayCondiciones(mesh &m){
     char filename[14];
     ifstream file;
-    float l, tau, kapa, lambda, ipsilon, psi, alfa, delta, eta;
+    float l,tau, k, lambda, v, psi, alpha, delta, eta ;
     int nnodes,neltos,ndirich_u,ndirich_p;
 
 
@@ -64,14 +64,13 @@ void leerMallayCondiciones(mesh &m){
     }while(!file);
 
 
-    file >> l >> tau >> kapa >> lambda >> ipsilon >> psi >> alfa >> delta >> eta;
+    file >> l >> tau >> k>> lambda >> v >> psi>>alpha>>delta>>eta ;
     file >> nnodes >> neltos >> ndirich_u >> ndirich_p;
 
 
-    m.setParameters(l, tau, kapa, lambda, ipsilon, psi, alfa, delta, eta);
+    m.setParameters(l,tau, k, lambda, v, psi, alpha, delta, eta);
     m.setSizes(nnodes,neltos,ndirich_u+ndirich_p);
     m.createData();
-
 
     dirichlet_u_list = new condition[ndirich_u];
     dirichlet_p_list = new condition[ndirich_p];
@@ -88,4 +87,3 @@ void leerMallayCondiciones(mesh &m){
     correctConditions(ndirich_u+ndirich_p,m.getDirichlet());
 
 }
-
