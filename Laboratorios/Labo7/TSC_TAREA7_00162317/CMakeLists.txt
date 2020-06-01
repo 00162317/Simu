@@ -3,4 +3,4 @@ project(TSC_TAREA7_00162317)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(TSC_TAREA7_00162317 main.cpp)
+add_executable(TSC_TAREA7_00162317 00162317.cpp)

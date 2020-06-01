@@ -1,4 +1,4 @@
-*GenData(1) *GenData(2) *GenData(3) *GenData(4) *GenData(5)
+*GenData(1) *GenData(2) *GenData(3) *GenData(4) *GenData(5) *GenData(6) *GenData(7)
 *Set Cond Dirichlet_U *nodes
 *set var NDU=CondNumEntities(int)
 *Set Cond Dirichlet_V *nodes
